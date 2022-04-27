@@ -4,23 +4,27 @@ import SuccessfulConsolesChart from "./Components/SuccesfulConsolesChart";
 import { getById, makeGetRequest } from "./services/AxiosRequests";
 
 function App() {
-  const [requestReload, setRequestReload] = useState(true);
   const [videoGames, setVideoGames] = useState([]);
   const [barChartData, setBarChartData] = useState([]);
 
-  //https://localhost:7260/api/games/gamesByConsole
+  useEffect(() => {
+    getGameSalesByConsole();
+  }, []);
+
   async function getGameSalesByConsole() {
     try {
+      debugger;
       let response = await axios.get(
         "https://localhost:7260/api/games/gamesByConsole"
       );
-      console.log("Get Games Sales response: ", response.data);
+      console.log("1 get request");
       setBarChartData(response.data);
     } catch (ex) {
       console.log("Oh no something didn't work right :(", ex);
     }
   }
 
+  //not davids
   //returns one game from pk
   async function getById(id) {
     try {
@@ -32,6 +36,7 @@ function App() {
     }
   }
 
+  //not davids
   //returns all games
   async function makeGetRequest() {
     try {
@@ -45,11 +50,7 @@ function App() {
 
   return (
     <div>
-      <h2>Video Games</h2>
-      <SuccessfulConsolesChart
-        getData={getGameSalesByConsole}
-        data={barChartData}
-      />
+      <SuccessfulConsolesChart data={barChartData} />
     </div>
   );
 }
