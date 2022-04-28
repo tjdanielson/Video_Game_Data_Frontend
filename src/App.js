@@ -27,17 +27,6 @@ function App() {
     }
   }
 
-  //returns one game from pk !!!!!!!!!!!UNUSED!!!!!!!!!!!
-  // async function getById(id) {
-  //   try {
-  //     let response = await axios.get(`https://localhost:7260/api/games/${id}`);
-  //     console.log(response.data);
-  //     setVideoGames(response.data);
-  //   } catch (ex) {
-  //     console.log("Oh no something didn't work right :(");
-  //   }
-  // }
-
   async function getByName(name) {
     try {
       let response = await axios.get(
@@ -54,17 +43,6 @@ function App() {
       console.log("Oh no something didn't work right :(");
     }
   }
-
-  //returns all games !!!!!!!!!!!UNUSED!!!!!!!!!!!
-  // async function makeGetRequest() {
-  //   try {
-  //     let response = await axios.get(`https://localhost:7260/api/games/`);
-  //     console.log(response.data);
-  //     setVideoGames(response.data);
-  //   } catch (ex) {
-  //     console.log("Oh no something didn't work right :(");
-  //   }
-  // }
 
   async function makeGetRequestBySearch(searchTerm) {
     try {
@@ -84,11 +62,7 @@ function App() {
         "https://localhost:7260/api/games/bestGamesYearly"
       );
       console.log("Get best games: ", response.data);
-      let newResponse = [];
-      response.data.forEach((i) => {
-        newResponse.push([i.platform, i.globalSales]);
-      });
-      setBestGames(newResponse);
+      setBestGames(response.data);
     } catch (ex) {
       console.log("Oh no something didn't work right :(", ex);
     }
