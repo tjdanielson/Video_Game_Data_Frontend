@@ -9,11 +9,11 @@ const SuccessfulConsolesChart = (props) => {
 
   function generateDataForChart() {
     if (props.nameData.length > 0) {
-      const data = [["Platform", "Sales"], ...props.nameData];
+      const data = [["Platform", "Sales\nPer Million"], ...props.nameData];
       console.log("From name search:", data);
       return data;
     } else {
-      const data = [["Platform", "Sales"], ...chartData];
+      const data = [["Platform", "Sales\nPer Million"], ...chartData];
       console.log("From normal barchart stuff:", data);
       return data;
     }
@@ -37,7 +37,7 @@ const SuccessfulConsolesChart = (props) => {
 
   //<Chart chartType="ColumnChart" width="100%" height="400px" data={data} />
   return (
-    <div>
+    <div className="barChartContainer">
       <p>Platform By Global Sales - In Millions</p>
       <Chart
         chartType="ColumnChart"

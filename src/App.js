@@ -3,7 +3,7 @@ import axios from "axios";
 //Components VVV
 import Header from "./Components/header";
 import SuccessfulConsolesChart from "./Components/SuccesfulConsolesChart";
-import Table from "./Components/Table/Table";
+import DataTable from "./Components/Table/Table";
 import BestGamesYearlyChart from "./Components/BestGamesYearlyChart";
 //Useless import VVV
 import { getById, makeGetRequest } from "./services/AxiosRequests";
@@ -71,13 +71,12 @@ function App() {
   return (
     <div>
       <Header getSearch={makeGetRequestBySearch} />
-      <h2>Video Games</h2>
       <SuccessfulConsolesChart
         getData={getGameSalesByConsole}
         data={barChartData}
         nameData={nameBarChartData}
       />
-      <Table videoGames={videoGames} getByName={getByName} />
+      <DataTable videoGames={videoGames} getByName={getByName} />
       <BestGamesYearlyChart getData={getBestGamesYearly} data={bestGames} />
     </div>
   );

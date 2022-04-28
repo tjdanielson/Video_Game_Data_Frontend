@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Chart } from "react-google-charts";
 import { useEffect, useState } from "react";
+import "./styles.css";
 
 const BestGamesYearlyChart = (props) => {
   const [chartData, setChartData] = useState([]);
@@ -30,14 +31,13 @@ const BestGamesYearlyChart = (props) => {
 
   //<Chart chartType="ColumnChart" width="100%" height="400px" data={data} />
   return (
-    <div>
-      <p>Best Games Yearly</p>
-      <Chart
-        chartType="Table"
-        width="100%"
-        height="400px"
-        data={generateDataForChart()}
-      />
+    <div className="bestGamesWrapper">
+      <div>
+        <h3>Best Games Yearly</h3>
+      </div>
+      <div>
+        <Chart chartType="Table" data={generateDataForChart()} />
+      </div>
     </div>
   );
 };
