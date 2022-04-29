@@ -46,9 +46,9 @@ const ConsoleSuccessByPublisher = (props) => {
           <div key={i}>
             <p>{data[0]}:</p>
             <ul>
+              <p>{data[1][0]}</p>
               <p>{data[1][1]}</p>
               <p>{data[1][2]}</p>
-              <p>{data[1][3]}</p>
             </ul>
           </div>
         );
