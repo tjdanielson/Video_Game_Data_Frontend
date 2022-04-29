@@ -10,11 +10,9 @@ const SuccessfulConsolesChart = (props) => {
   function generateDataForChart() {
     if (props.nameData.length > 0) {
       const data = [["Platform", "Sales\nPer Million"], ...props.nameData];
-      console.log("From name search:", data);
       return data;
     } else {
       const data = [["Platform", "Sales\nPer Million"], ...chartData];
-      console.log("From normal barchart stuff:", data);
       return data;
     }
   }
@@ -23,15 +21,12 @@ const SuccessfulConsolesChart = (props) => {
     props.getData();
     var result = Object.entries(props.data);
     setChartData(result);
-    console.log(result);
   }, []);
 
   useEffect(() => {
     if (props.data) {
-      console.log("before object conversion:", props.data);
       var result = Object.entries(props.data);
       setChartData(result);
-      console.log("after object conversion:", result);
     }
   }, [props.data]);
 

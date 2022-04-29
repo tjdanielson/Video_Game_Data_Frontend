@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from "react";
 
+let i = 0;
+
 const ConsoleSuccessByPublisher = (props) => {
-  const [requestReload, setRequestReload] = useState(true);
+  const [getData, setGetData] = useState([]);
   const [chartData, setChartData] = useState([]);
 
   function generateDataForChart() {
-    let newData = chartData.map((data, i) => {
-      console.log(data[i][1]);
-      let publisherArray = Object.entries(data[i][1]);
-      data.pop(data[1]);
-      data.push(publisherArray);
+    let rawData = Object.entries(props.data);
+    console.log("before map runs in generateDataForChart:" + getData);
+    let newData = rawData.map((data, i) => {
+      let publisherArray = Object.entries(data[1]);
+      return [data[0], publisherArray];
     });
-    console.log("converted object to array hopfully?: ", newData);
-    return newData;
+    console.log("After Map runs in generateDataForChart: ", newData);
+
+    setChartData(newData);
   }
 
   useEffect(() => {
-    props.getData();
-    var result = Object.entries(props.data);
-    setChartData(result);
-    console.log("success by publisher after conversion:", result);
+    //props.getData();
+    // var result = Object.entries(props.data);
+    // setGetData(result);
+
+    i++;
+    console.log(i);
   }, []);
 
   useEffect(() => {
-    props.getData();
-    var result = Object.entries(props.data);
-    setChartData(result);
-    console.log("success by publisher after conversion:", result);
-    generateDataForChart();
+    if (props.data.length > 0) {
+      generateDataForChart();
+    }
   }, [props.data]);
 
   return (

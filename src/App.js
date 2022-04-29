@@ -17,12 +17,15 @@ function App() {
   const [bestGames, setBestGames] = useState([]);
   const [publisherSales, setPublisherSales] = useState([]);
 
+  useEffect(() => {
+    getPublisherSalesByConsole();
+  }, []);
+
   async function getGameSalesByConsole() {
     try {
       let response = await axios.get(
         "https://localhost:7260/api/games/gamesByConsole"
       );
-      console.log("Get Games Sales response: ", response.data);
       setBarChartData(response.data);
     } catch (ex) {
       console.log("Oh no something didn't work right :(", ex);
@@ -34,7 +37,6 @@ function App() {
       let response = await axios.get(
         `https://localhost:7260/api/games/gamebyname/${name}`
       );
-      console.log(response.data);
       setVideoGames(response.data);
       let newResponse = [];
       response.data.forEach((i) => {
@@ -51,7 +53,6 @@ function App() {
       let response = await axios.get(
         `https://localhost:7260/api/games/search/${searchTerm}`
       );
-      console.log("This came from search bar!", response.data);
       setVideoGames(response.data);
     } catch (ex) {
       console.log("Oh no something didn't work right :(");
@@ -63,7 +64,6 @@ function App() {
       let response = await axios.get(
         "https://localhost:7260/api/games/bestGamesYearly"
       );
-      console.log("Get best games: ", response.data);
       setBestGames(response.data);
     } catch (ex) {
       console.log("Oh no something didn't work right :(", ex);
@@ -75,8 +75,8 @@ function App() {
       let response = await axios.get(
         "https://localhost:7260/api/games/publisherSalesByConsole"
       );
-      console.log("Get publisher sales by console: ", response.data);
-      setPublisherSales(response.data);
+      let returnValue = Object.entries(response.data);
+      setPublisherSales(returnValue);
     } catch (ex) {
       console.log("Oh no something didn't work right :(", ex);
     }

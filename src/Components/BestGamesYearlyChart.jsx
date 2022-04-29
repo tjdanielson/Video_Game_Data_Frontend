@@ -9,7 +9,6 @@ const BestGamesYearlyChart = (props) => {
 
   function generateDataForChart() {
     const data = [["Year", "Game"], ...chartData];
-    console.log("From best game yearly:", data);
     return data;
   }
 
@@ -17,15 +16,12 @@ const BestGamesYearlyChart = (props) => {
     props.getData();
     var result = Object.entries(props.data);
     setChartData(result);
-    console.log(result);
   }, []);
 
   useEffect(() => {
     if (props.data) {
-      console.log("best games yearly - before object conversion:", props.data);
       var result = Object.entries(props.data);
       setChartData(result);
-      console.log("best games yearly -after object conversion:", result);
     }
   }, [props.data]);
 
