@@ -40,7 +40,7 @@ const ConsoleSuccessByPublisher = (props) => {
 
   return (
     <div>
-      <h3>Consoles</h3>
+      <h3>Top Three Most Successful Publishers By Console:</h3>
       {finalData.map((data, i) => {
         return (
           <div key={i}>
