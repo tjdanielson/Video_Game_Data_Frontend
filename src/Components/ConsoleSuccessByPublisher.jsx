@@ -17,16 +17,6 @@ const ConsoleSuccessByPublisher = (props) => {
 
     setChartData(newData);
   }
-
-  useEffect(() => {
-    //props.getData();
-    // var result = Object.entries(props.data);
-    // setGetData(result);
-
-    i++;
-    console.log(i);
-  }, []);
-
   useEffect(() => {
     if (props.data.length > 0) {
       generateDataForChart();
