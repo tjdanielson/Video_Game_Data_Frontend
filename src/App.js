@@ -5,6 +5,7 @@ import Header from "./Components/header";
 import SuccessfulConsolesChart from "./Components/SuccesfulConsolesChart";
 import DataTable from "./Components/Table/Table";
 import BestGamesYearlyChart from "./Components/BestGamesYearlyChart";
+import ConsoleSuccessByPublisher from "./Components/ConsoleSuccessByPublisher";
 //Useless import VVV
 import { getById, makeGetRequest } from "./services/AxiosRequests";
 
@@ -14,6 +15,7 @@ function App() {
   const [barChartData, setBarChartData] = useState([]);
   const [nameBarChartData, setNameBarChartData] = useState([]);
   const [bestGames, setBestGames] = useState([]);
+  const [publisherSales, setPublisherSales] = useState([]);
 
   async function getGameSalesByConsole() {
     try {
@@ -68,6 +70,18 @@ function App() {
     }
   }
 
+  async function getPublisherSalesByConsole() {
+    try {
+      let response = await axios.get(
+        "https://localhost:7260/api/games/publisherSalesByConsole"
+      );
+      console.log("Get publisher sales by console: ", response.data);
+      setPublisherSales(response.data);
+    } catch (ex) {
+      console.log("Oh no something didn't work right :(", ex);
+    }
+  }
+
   return (
     <div>
       <Header getSearch={makeGetRequestBySearch} />
@@ -78,6 +92,10 @@ function App() {
       />
       <DataTable videoGames={videoGames} getByName={getByName} />
       <BestGamesYearlyChart getData={getBestGamesYearly} data={bestGames} />
+      <ConsoleSuccessByPublisher
+        getData={getPublisherSalesByConsole}
+        data={publisherSales}
+      />
     </div>
   );
 }
