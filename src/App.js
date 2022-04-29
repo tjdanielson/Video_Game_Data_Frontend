@@ -17,9 +17,9 @@ function App() {
   const [bestGames, setBestGames] = useState([]);
   const [publisherSales, setPublisherSales] = useState([]);
 
-  useEffect(() => {
-    getPublisherSalesByConsole();
-  }, []);
+  // useEffect(() => {
+  //   getPublisherSalesByConsole();
+  // }, []);
 
   async function getGameSalesByConsole() {
     try {
@@ -75,8 +75,8 @@ function App() {
       let response = await axios.get(
         "https://localhost:7260/api/games/publisherSalesByConsole"
       );
-      let returnValue = Object.entries(response.data);
-      setPublisherSales(returnValue);
+      //let returnValue = Object.entries(response.data);
+      setPublisherSales(response.data);
     } catch (ex) {
       console.log("Oh no something didn't work right :(", ex);
     }
